@@ -50,7 +50,7 @@ Click "Edit Parameters"
 
 ![](http://i.imgur.com/ku1pkRY.jpg)
 
-Change the default value for appname.g. add initials and random number.
+Change the default value for appname e.g. add initials and random number.
 
 Click Save.
 
