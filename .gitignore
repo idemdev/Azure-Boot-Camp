@@ -13,3 +13,9 @@
 /My-Tasks-Application/MyTasks/MyTasks.API/obj/Release
 /My-Tasks-Application/MyTasks/MyTasks.API/Properties/PublishProfiles
 /My-Tasks-Application/MyTasks/MyTasks.Web/obj/Release
+
+# Node
+/**/node_modules
+
+# Visual Studio Code
+.vscode/
