@@ -8,6 +8,8 @@ Visual Studio 2015 or 2015 Community (or earlier)
 
 Github account
 
+Azure subscription
+
 ## Setup ##
 
 Navigate to https://github.com/idemdev/Azure-Boot-Camp
@@ -38,19 +40,25 @@ Login to your Azure subscription.
 
 ![](http://i.imgur.com/yTy1tIb.jpg)
 
-Open WebSite.json.
-
-![](http://i.imgur.com/enTliJy.jpg)
-
-Change the default value e.g. add initials and random number.
-
 Right-click on MyTasks.ResourceGroup.
 
 Click Deploy and fill in the fields.
 
 ![](http://i.imgur.com/ka8O9jE.jpg)
 
+Click "Edit Parameters"
+
+![](http://i.imgur.com/ku1pkRY.jpg)
+
+Change the default value for appname.g. add initials and random number.
+
+Click Save.
+
 Click OK.
+
+Follow progress in the Output window.
+
+It should end with "Successfully deployed template 'website.json' to resource group 'Default-Web-SoutheastAsia'." or whatever location you picked.
 
 In Server Explorer, click Refresh.
 
@@ -77,6 +85,24 @@ Then select Publish.
 Repeat the process as above for api-azure-bootcamp-auckland ...
 
 The web site and web service should now be deployed.
+
+Navigate to the web site e.g.
+
+http://web-azure-bootcamp-auckland-xxx-1234.azurewebsites.net/
+
+![](http://i.imgur.com/0VwTGPo.jpg)
+
+Enter a task e.g. "Enjoy the bootcamp!"
+
+Click "Add".
+
+![](http://i.imgur.com/IEZz2FM.jpg)
+
+Click "Complete".
+
+![](http://i.imgur.com/q35bxb0.jpg)
+
+Congratulations. You have finished this section :-)
 
 # Xamarin #
 
