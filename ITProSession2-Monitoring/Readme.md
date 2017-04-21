@@ -3,7 +3,7 @@
 ---
 <a name="Overview"></a>
 ## Overview ##
-Once you've built and configured your virtual machines, websites, databases and other services within your Azure subscription, it's important to keep an eye on things to ensure your services are running as well as you expect and that they aren't vulnerable to attacks which could interrupt service. Even though the Azure platform is hosted in some of the most stable, secure and performant datacenters in the world, this doesn't mean that your solution is automatically bulletproof - it's still your responsibility to ensure your services running on Azure are performing well. Luckily for us though, there are some great tools available directly in Azure which allow us to easily keep an eye on things. We?ll be covering these in the following excercises :
+Once you've built and configured your virtual machines, websites, databases and other services within your Azure subscription, it's important to keep an eye on things to ensure your services are running as well as you expect and that they aren't vulnerable to attacks which could interrupt service. Even though the Azure platform is hosted in some of the most stable, secure and performant datacenters in the world, this doesn't mean that your solution is automatically bulletproof - it's still your responsibility to ensure your services running on Azure are performing well. Luckily for us though, there are some great tools available directly in Azure which allow us to easily keep an eye on things. We'll be covering these in the following excercises :
 - Azure Monitor
 - Azure Security Center
 - Log Analytics (Operational Management Suite)
@@ -33,6 +33,7 @@ The following are required to complete this hands-on lab:
 - [Exercise 5: Identifying security vulnerabilities](#Exercise5)
 - [Exercise 6: Adding more functionality with OMS](#Exercise6)
 - [Exercise 7 (if you have time): Explore the OMS Experience Center](#Exercise7)
+
 Estimated time to complete this lab: **60 minutes**.
 <a name="Exercise1"></a>
 ## Exercise 1: Create a VM and discover basic Azure performance metric monitoring capabilities
@@ -47,6 +48,7 @@ _Creating a Windows Server VM_
 
 1. In the blade which pops up, ensure you select "Resource Manager" as your deployment model, then click **CREATE** 
 ![Creating a storage account](Images/new-vm-arm.JPG)
+
 _Resource Manager Deployment Model selected_
 
 
@@ -88,7 +90,7 @@ Once the build is completed and the machine is listed as "Running", click on it 
 - Disk bytes
 - Disk operations
 
->These metrics are available because they are able to be determined by the physical host machine running this virtual machine. In order for us to get a better understanding of how well this VM is performing though, we'll need to enable collection of metric data from WITHIN the VM itself? that's the focus of Exercise 2.
+>These metrics are available because they are able to be determined by the physical host machine running this virtual machine. In order for us to get a better understanding of how well this VM is performing though, we'll need to enable collection of metric data from WITHIN the VM itself - that's the focus of Exercise 2.
 ![Default metrics available](Images/new-vm-default-metrics.JPG)
 
 _Default metrics available_
@@ -133,13 +135,13 @@ _Diagnostics settings update complete_
 _Agents have been installed_
 
 
-1. Now, we should be able to access many more metrics? Take a look by scrolling down and clicking **Metrics** under the Monitoring section
+1. Now, we should be able to access many more metrics... Take a look by scrolling down and clicking **Metrics** under the Monitoring section
 ![Many more metrics now available](Images/guestmetrics-metrics.JPG)
 
 _Many more metrics now available_
 
 
->You may notice if you select to view one of the metrics that a message "No Data Could be Loaded" appears? this is because no metric data has been collected yet since the agent has only recently been installed. Ensure **Time Range** is set to "past hour" to provide the most granularity then give it a few minutes and try toggling the metric checkbox (such as Memory\Available Bytes) off and on again.
+>You may notice if you select to view one of the metrics that a message "No Data Could be Loaded" appears... this is because no metric data has been collected yet since the agent has only recently been installed. Ensure **Time Range** is set to "past hour" to provide the most granularity then give it a few minutes and try toggling the metric checkbox (such as Memory\Available Bytes) off and on again.
 
 1. Explore the new performance metrics available by toggling them on and off
 
@@ -172,7 +174,7 @@ _Add a new dashboard_
 1. Click Update
 1. Click Done customizing
 1. In the menu on the left, click the VMs icon, then find the VM we created above in the list that appears
-1. click the **?** icon to the right and in the popup menu, click **Pin to dashboard**
+1. click the **...** icon to the right and in the popup menu, click **Pin to dashboard**
 This will add a shortcut to our VM onto the dashboard we're creating
 
 ![Pin a VM to our dashboard](Images/dashboard-pinvm.JPG)
@@ -207,7 +209,7 @@ First, we're going to add an alert to fire whenever the CPU utilisation for our 
 1. In the VM settings menu, scroll down to **Alert rules** under the Monitoring section
 1. Click **Add metric alert**
 
-![Add a new metric alert](Images/alerts-addnew.JPG)
+![Add a new metric alert](Images/alerts-addmetricJPG)
 
 _Add a new metric alert_
 
@@ -215,7 +217,7 @@ _Add a new metric alert_
 1. in the "Add rule" blade which appears, 
 	- Enter a name for this rule (e.g. High CPU)
 	- Enter a description (e.g. Alert when CPU > 50%)
-	- The criteria for subscription, resource group, and resource should already be scoped to the VM we're working with so you shouldn?t need to change them
+	- The criteria for subscription, resource group, and resource should already be scoped to the VM we're working with so you shouldn't need to change them
 	- For Condition, select **Greater than**
 	- For Threshold, enter 50
 	- For Period, select **Over the last 5 minutes**
@@ -234,8 +236,8 @@ You should now see the metric rule added to the list
 _New alert added_
 
 
-> So that was adding an alert to fire based on some metric performance data reaching a threshold? you could add other metric alerts such as free disk space approaching zero to prevent against your VM crashing
->There is another type of alert too, called an **Activity Log Alert**? this type of alert triggers when some sort of action happens to a resource you have in Azure.
+> So that was adding an alert to fire based on some metric performance data reaching a threshold... you could add other metric alerts such as free disk space approaching zero to prevent against your VM crashing
+>There is another type of alert too, called an **Activity Log Alert**... this type of alert triggers when some sort of action happens to a resource you have in Azure.
 
 Let's set up an Activity Log Alert to email us whenever our VM is restarted
 
@@ -264,6 +266,10 @@ _New activity alert_
 	- Details: (your email address)
 
 1. Click OK
+
+![RDP to your VM](Images/alerts-addlogalert.JPG)
+
+_RDP to your VM_
 
 >  You'll notice the activity log alert isn't shown in the list of alerts here - that's expected.
 
@@ -326,7 +332,7 @@ _Click back into our VM_
 _Restart VM_
 
 
-1. Check your email again? you should now also have an activity alert email from the rule we added earlier
+1. Check your email again... you should now also have an activity alert email from the rule we added earlier
 
 ![Alert Triggered!](Images/alertemail-activity.JPG)
 
