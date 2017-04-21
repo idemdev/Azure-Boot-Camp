@@ -209,7 +209,7 @@ First, we're going to add an alert to fire whenever the CPU utilisation for our 
 1. In the VM settings menu, scroll down to **Alert rules** under the Monitoring section
 1. Click **Add metric alert**
 
-![Add a new metric alert](Images/alerts-addmetricJPG)
+![Add a new metric alert](Images/alerts-addmetric.JPG)
 
 _Add a new metric alert_
 
@@ -269,7 +269,7 @@ _New activity alert_
 
 ![RDP to your VM](Images/alerts-addlogalert.JPG)
 
-_RDP to your VM_
+_Adding a Log Alert_
 
 >  You'll notice the activity log alert isn't shown in the list of alerts here - that's expected.
 
