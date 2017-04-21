@@ -477,7 +477,7 @@ In this exercise, you will use the [OMS Experience Center](https://experience.mm
 1. Open the [OMS Experience Center](https://experience.mms.microsoft.com) in your browser. 
 1. Enter your details in the relevant text boxes, then select either **Insight & Analytics** or **Security & Compliance** and click **Get Started** (there are two separate labs here come back and try the other too)
 1. Download the PDF from the prompt and follow through the lab details it contains 
-1. You can't break anything (it's read-only), so take a good look anything you like
+1. You can't break anything (it's read-only), so take a good look and drill down into anything you like
 
 ![Sign up for the OMS Experience](Images/oms-signup.JPG)
 
@@ -491,4 +491,4 @@ _Download the PDF_
 
 ![OMS Experience Dashboard](Images/oms-xpc.JPG)
 
-_ OMS Experience Dashboard_
+_Explore the OMS Experience Center Dashboard_
