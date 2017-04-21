@@ -3,10 +3,9 @@
 ---
 <a name="Overview"></a>
 ## Overview ##
-Once you've built and configured your virtual machines, websites, databases and other services within your Azure subscription, it's important to keep an eye on things to ensure your services are running as well as you expect and that they aren't vulnerable to attacks which could interrupt service. Even though the Azure platform is hosted in some of the most stable, secure and performant datacenters in the world, this doesn't mean that your solution is automatically bulletproof - it's still your responsibility to ensure your services running on Azure are performing well. Luckily for us though, there are some great tools available directly in Azure which allow us to easily keep an eye on things. We’ll be covering these in the following excercises :
+Once you've built and configured your virtual machines, websites, databases and other services within your Azure subscription, it's important to keep an eye on things to ensure your services are running as well as you expect and that they aren't vulnerable to attacks which could interrupt service. Even though the Azure platform is hosted in some of the most stable, secure and performant datacenters in the world, this doesn't mean that your solution is automatically bulletproof - it's still your responsibility to ensure your services running on Azure are performing well. Luckily for us though, there are some great tools available directly in Azure which allow us to easily keep an eye on things. We'll be covering these in the following excercises :
 - Azure Monitor
 - Azure Security Center
-- Application Insights
 - Log Analytics (Operational Management Suite)
 
 Each of the above services has its own core focus but offers overlapping functionality to the others available. 
@@ -25,7 +24,6 @@ In this hands-on lab, you will learn how to:
 ### Prerequisites ###
 The following are required to complete this hands-on lab:
 - An active Microsoft Azure subscription, or [sign up for a free trial](https://azure.microsoft.com/en-us/free/)
-- Load generation PowerShell script [LoadGen.ps1](http://gab.com/loadgen.ps1) (Windows users only)
 <a name="Exercises"></a>
 ## Exercises ##
 - [Exercise 1: Create a VM and discover basic Azure performance metric monitoring capabilities](#Exercise1)
@@ -35,6 +33,7 @@ The following are required to complete this hands-on lab:
 - [Exercise 5: Identifying security vulnerabilities](#Exercise5)
 - [Exercise 6: Adding more functionality with OMS](#Exercise6)
 - [Exercise 7 (if you have time): Explore the OMS Experience Center](#Exercise7)
+
 Estimated time to complete this lab: **60 minutes**.
 <a name="Exercise1"></a>
 ## Exercise 1: Create a VM and discover basic Azure performance metric monitoring capabilities
@@ -42,31 +41,48 @@ In this exercise, you will use the [Azure Portal](https://portal.azure.com) to c
 1. Open the [Azure Portal](https://portal.azure.com) in your browser. If you are asked to log in, do so using your Microsoft account.
  
 1. Click **+ New** in the ribbon on the left. Then click **Storage**, followed by **Storage account**.
-![Creating a storage account](Images/new-vm.jpg)
+![Creating a storage account](Images/new-vm.JPG)
+
 _Creating a Windows Server VM_
+
+
 1. In the blade which pops up, ensure you select "Resource Manager" as your deployment model, then click **CREATE** 
-![Creating a storage account](Images/new-vm-arm.jpg)
+![Creating a storage account](Images/new-vm-arm.JPG)
+
 _Resource Manager Deployment Model selected_
+
+
 1. In the ensuing "Create virtual machine" blade, on the **Basics** tab, enter a name for the new virtual machine in **Name** field and in the **VM Disk Type** dropdown, select SSD.
 1. Enter a user name and password into the fields shown. **MAKE A NOTE** of these values as we'll be needing them to access this machine later
 1. In the **Resource Group** field, select **Create New** and enter a new resource group name
 1. For the "Already have a Windows Server license" field, select **No**
-	![Specifying basic parameters for a new virtual machine](Images/new-vm-basic.jpg)
+	![Specifying basic parameters for a new virtual machine](Images/new-vm-basics.JPG)
+
 _Specifying basic parameters for a new virtual machine_
 1. On the "Choose a size" blade, select **DS1_V2** 
-![Selecting VM Size](Images/create-vm-size.jpg)
+![Selecting VM Size](Images/new-vm-size.JPG)
+
 _Selecting VM Size_
-1. On the "Settings" blade, select **YES** under **Storage… Use Managed Disks**
+1. On the "Settings" blade, select **YES** under **Storage... Use Managed Disks**
 1. Under the "Monitoring" section, ensure Boot Diagnostics is ENABLED and Guest OS diagnostics is DISABLED. All other settings can retain their default values.
-![Selecting VM Settings](Images/create-vm-settings.jpg)
+
+![Selecting VM Settings](Images/new-vm-settings.JPG)
+
 _Selecting VM Settings_
+
+
 1. Click **OK** then on the Summary screen, once validation passes, click **OK** to create the new virtual machine
-![Confirm summary to begin creation](Images/new-vm-summary.jpg)
+![Confirm summary to begin creation](Images/new-vm-summary.JPG)
+
 _Confirm summary to begin creation_
+
+
 The VM creation process will take a few minutes and you can check on progress by clicking the "Virtual Machines" icon in the resources menu on the left (where you'll then see your new machine as having a status of "Creating"), or you can click the Notifications icon at the top right where you will see your deployment in progress.
 
-![Checking deployment progress](Images/new-vm-progress.jpg)
+![Checking deployment progress](Images/new-vm-creating.JPG)
+
 _Checking deployment progress_
+
 
 Once the build is completed and the machine is listed as "Running", click on it to bring up the Overview blade. Here you'll notice four default performance metrics being monitored, namely:
 - CPU
@@ -74,8 +90,9 @@ Once the build is completed and the machine is listed as "Running", click on it 
 - Disk bytes
 - Disk operations
 
->These metrics are available because they are able to be determined by the physical host machine running this virtual machine. In order for us to get a better understanding of how well this VM is performing though, we'll need to enable collection of metric data from WITHIN the VM itself… that's the focus of Exercise 2.
-![Default metrics available](Images/new-vm-default-metrics.jpg)
+>These metrics are available because they are able to be determined by the physical host machine running this virtual machine. In order for us to get a better understanding of how well this VM is performing though, we'll need to enable collection of metric data from WITHIN the VM itself - that's the focus of Exercise 2.
+![Default metrics available](Images/new-vm-default-metrics.JPG)
+
 _Default metrics available_
 
 
@@ -83,8 +100,10 @@ _Default metrics available_
 The Azure Monitor blade opens and as you can see, in the "Resource" dropdown at the top right, it is scoped to our new VM.
 You'll also notice that there are actually 7 rather than 4 metrics available, all of them determined by the Host rather than from within the VM itself. This is specified by the word "[Host]" before the metric name.
 1. Go ahead and toggle different metrics on and off and also change the Chart type and Time range to see the effect on the graphed data.
-![Explore the Azure Monitor interface and available metrics](Images/new-vm-default-metrics-monitor.jpg)
+![Explore the Azure Monitor interface and available metrics](Images/new-vm-default-metrics-monitor.JPG)
+
 _Explore the Azure Monitor interface and available metrics_
+
 
 <a name="Exercise2"></a>
 ## Exercise 2: Extend performance metric monitoring with the Azure Diagnostics
@@ -97,24 +116,32 @@ In this exercise, you will use the [Azure Portal](https://portal.azure.com) to e
 1. Click "Enable guest-level monitoring"
 
 
-![Enable guest-level monitoring](Images/guestmetrics-enable.jpg)
+![Enable guest-level monitoring](Images/guestmetrics-enable.JPG)
+
 _Enabling guest-level monitoring_
+
 
 > What will now happen, is that a piece of software called an agent is installed in the virtual machine. This agent collects performance metric data and uploads it into Azure storage. Installing the agent usually takes a few minutes.
 
 1. Wait until you receive a notification that the diagnostic settings update has been completed.
-![Diagnostics settings update complete](Images/guestmetrics-notification.jpg)
+![Diagnostics settings update complete](Images/guestmetrics-notification.JPG)
+
 _Diagnostics settings update complete_
 
+
 1. Confirm agent installation by checking the Extensions setting in the VM menu
-![Extension provisioning succeeded](Images/guestmetrics-extensions.jpg)
+![Extension provisioning succeeded](Images/guestmetrics-extensions.JPG)
+
 _Agents have been installed_
 
-1. Now, we should be able to access many more metrics… Take a look by scrolling down and clicking **Metrics** under the Monitoring section
-![Many more metrics now available](Images/guestmetrics-metrics.jpg)
+
+1. Now, we should be able to access many more metrics... Take a look by scrolling down and clicking **Metrics** under the Monitoring section
+![Many more metrics now available](Images/guestmetrics-metrics.JPG)
+
 _Many more metrics now available_
 
->You may notice if you select to view one of the metrics that a message "No Data Could be Loaded" appears… this is because no metric data has been collected yet since the agent has only recently been installed. Ensure **Time Range** is set to "past hour" to provide the most granularity then give it a few minutes and try toggling the metric checkbox (such as Memory\Available Bytes) off and on again.
+
+>You may notice if you select to view one of the metrics that a message "No Data Could be Loaded" appears... this is because no metric data has been collected yet since the agent has only recently been installed. Ensure **Time Range** is set to "past hour" to provide the most granularity then give it a few minutes and try toggling the metric checkbox (such as Memory\Available Bytes) off and on again.
 
 1. Explore the new performance metrics available by toggling them on and off
 
@@ -129,25 +156,41 @@ In this exercise, you will use the [Azure Portal](https://portal.azure.com) to s
 1. Click the **Microsoft Azure** text at the top left of the Azure portal to be taken to your default dashboard view
 1. Now click "+ New dashboard"
 
-![Add a new dashboard](Images/dashboard-new.jpg)
+![Add a new dashboard](Images/dashboard-new.JPG)
+
 _Add a new dashboard_
+
 
 1. In the dashboard editor that appears, update the title at the top to "My GAB Akl Services"
 1. Click the **Markdown** tile on the left and drop it onto the dashboard
-1. Modify the **Edit Markdown** window as shown in the screenshot below. Copy and Paste the following text as Content:
+1. Modify the **Edit Markdown** window as shown in the screenshot below.
 
->__My GAB Services__
->
->This dashboard will show us performance and availability of our services. <img width="250" height="169" class="alignleft wp-image-26749 size-full" alt="2017-logo-250x169" src="http://global.azurebootcamp.net/wp->content/uploads/2016/09/2017-logo-250x169.png">
+
+![Customize your dashboard](Images/dashboard-custom.JPG)
+
+_Customize your dashboard_
+
+
+1. Copy and Paste the following text as Content:
+
+<pre><code>
+	__My GAB Services__
+	
+	This dashboard will show us performance and availability of our services.
+	&lt;img width="250" height="169" class="alignleft wp-image-26749 size-full" alt="2017-logo-250x169" src="http://global.azurebootcamp.net/wp->content/uploads/2016/09/2017-logo-250x169.png"&gt;
+&nbsp;
+</code></pre>	
 
 1. Click Update
 1. Click Done customizing
 1. In the menu on the left, click the VMs icon, then find the VM we created above in the list that appears
-1. click the **…** icon to the right and in the popup menu, click **Pin to dashboard**
+1. click the **...** icon to the right and in the popup menu, click **Pin to dashboard**
 This will add a shortcut to our VM onto the dashboard we're creating
 
-![Pin a VM to our dashboard](Images/dashboard-pinvm.jpg)
+![Pin a VM to our dashboard](Images/dashboard-pinvm.JPG)
+
 _Pin a VM to our dashboard_
+
 
 1. Click on the VM top open the settings pane
 1. Scroll down and click on Metrics under Monitoring
@@ -155,13 +198,15 @@ _Pin a VM to our dashboard_
 1. Ensure Time Range is set to Past Hour
 1. Click Pin to Dashboard
 
-![Pin CPU Metric to dashboard](Images/dashboard-pinmetric.jpg)
+![Pin CPU Metric to dashboard](Images/dashboard-pinmetric.JPG)
+
 _Pin CPU Metric to dashboard_
+
 
 1. Repeat the above steps to also pin the metric **\Memory\Available Bytes**
 1. Open your new dashboard again by clicking the **Microsoft Azure** text at the top left of the Portal
 1. Rearrange your dashboard components by dragging and dropping to make it easier to read. Click Done Customizing when complete.
-![Rearranged dashboard tiles](Images/dashboard-rearrange.jpg)
+![Rearranged dashboard tiles](Images/dashboard-rearrange.JPG)
 _Rearranged dashboard tiles_
 
 
@@ -174,36 +219,44 @@ First, we're going to add an alert to fire whenever the CPU utilisation for our 
 1. In the VM settings menu, scroll down to **Alert rules** under the Monitoring section
 1. Click **Add metric alert**
 
-![Add a new metric alert](Images/alert-addnew.jpg)
+![Add a new metric alert](Images/alerts-addmetric.JPG)
+
 _Add a new metric alert_
+
 
 1. in the "Add rule" blade which appears, 
 	- Enter a name for this rule (e.g. High CPU)
 	- Enter a description (e.g. Alert when CPU > 50%)
-	- The criteria for subscription, resource group, and resource should already be scoped to the VM we're working with so you shouldn’t need to change them
+	- The criteria for subscription, resource group, and resource should already be scoped to the VM we're working with so you shouldn't need to change them
 	- For Condition, select **Greater than**
 	- For Threshold, enter 50
 	- For Period, select **Over the last 5 minutes**
 	- For **Additional administrator email(s)**, enter in your personal email address
 1. Click OK
 
-![Add a new metric alert rule](Images/alert-addrule.jpg)
+![Add a new metric alert rule](Images/alerts-addrule.JPG)
+
 _Add a new metric alert rule_
+
 
 You should now see the metric rule added to the list
 
-![New alert added](Images/alert-ruleadded.jpg)
+![New alert added](Images/alerts-ruleadded.JPG)
+
 _New alert added_
 
-> So that was adding an alert to fire based on some metric performance data reaching a threshold… you could add other metric alerts such as free disk space approaching zero to prevent against your VM crashing
->There is another type of alert too, called an **Activity Log Alert**… this type of alert triggers when some sort of action happens to a resource you have in Azure.
+
+> So that was adding an alert to fire based on some metric performance data reaching a threshold... you could add other metric alerts such as free disk space approaching zero to prevent against your VM crashing
+>There is another type of alert too, called an **Activity Log Alert**... this type of alert triggers when some sort of action happens to a resource you have in Azure.
 
 Let's set up an Activity Log Alert to email us whenever our VM is restarted
 
 1. In the Alerts area, click the button to **Add a new log activity alert**
 
-![New activity alert](Images/alert-newactivity.jpg)
+![New activity alert](Images/alerts-newactivity.JPG)
+
 _New activity alert_
+
 
 1. In the "Add activity log alert" blade which pops up, enter the following:
 	- Activity log alert name: VM Restart Alert
@@ -224,6 +277,10 @@ _New activity alert_
 
 1. Click OK
 
+![RDP to your VM](Images/alerts-addlogalert.JPG)
+
+_Adding a Log Alert_
+
 >  You'll notice the activity log alert isn't shown in the list of alerts here - that's expected.
 
 Let's test out our alerts!
@@ -231,34 +288,42 @@ We need to generate some load on our VM to get CPU above 90%, so to do that:
 
 1. From the Overview blade in your virtual machine settings, click on Connect, then Open the RDP file
 
-![RDP to your VM](Images/vm-connect1.jpg)
+![RDP to your VM](Images/vm-connect1.JPG)
+
 _RDP to your VM_
+
 
 1. Enter the credentials you provided when you first built the VM in Exercise 1
 
 1. From within the VM, check that IE ESC is turned OFF from Server Manager
 
-![Turn OFF IE ESC](Images/ieesc.jpg)
+![Turn OFF IE ESC](Images/ieesc.JPG)
+
 _Turn OFF IE ESC_
+
 
 1. Next, open Internet Explorer and download the following file https://gabakl.blob.core.windows.net/resources/loadgen.ps1
 1. Right-click the downloaded file and select "Run with PowerShell"
 
-![Run loadgen.ps1](Images/powershell.jpg)
+![Run loadgen.ps1](Images/powershell.JPG)
+
 _Run loadgen.ps1_
+
 
 Memory and CPU load will be generated so we can see our performance stats and test out our alerts
 
 1. Click on the "Microsoft Azure" text in the top left of the portal to be taken back to our dashboard
 1. We should soon start seeing the effect of the script reflected in our graphs
 
-![High CPU, Low Available Memory](Images/metric-stats.jpg)
+![High CPU, Low Available Memory](Images/metric-stats.JPG)
+
 _High CPU, Low Available Memory_
 
 
 1. Check your email after 5 minutes too as you should also have received an alert that CPU has been too high on our VM
 
-![Alert Triggered!](Images/alertemail-metric.jpg)
+![Alert Triggered!](Images/alertemail-metric.JPG)
+
 _Alert Triggered_
 
 
@@ -266,18 +331,23 @@ Let's get our VM back to normal by rebooting it
 
 1. Click the VM shortcut from the dashboard
 
-![Click back into our VM](Images/vm-shortcut.jpg)
+![Click back into our VM](Images/vm-shortcut.JPG)
+
 _Click back into our VM_
 
 
 1. Click **Restart**
-![Restart VM](Images/vm-restart.jpg)
+![Restart VM](Images/vm-restart.JPG)
+
 _Restart VM_
 
-1. Check your email again… you should now also have an activity alert email from the rule we added earlier
 
-![Alert Triggered!](Images/alertemail-activity.jpg)
+1. Check your email again... you should now also have an activity alert email from the rule we added earlier
+
+![Alert Triggered!](Images/alertemail-activity.JPG)
+
 _Alert Triggered_
+
 
 > When you have many services and resources in your Azure subscription, it can be cumbersome to have to go into each resource individually to check its metrics and manage alerts. Handily, there is a service
 > in Azure known as **Azure Monitor** which brings all this functionality together in one place. Take 5 minutes to explore how Azure Monitor consolidates this information.
@@ -288,5 +358,137 @@ _Alert Triggered_
 	- Metrics: shows performance metric data for any resource across all your subscriptions
 	- Alerts: shows a consolidated view of metric and activity alerts (see the two we added earlier?)
 
-![Explore Azure Monitor](Images/azure-monitor.jpg)
+![Explore Azure Monitor](Images/azure-monitor.JPG)
+
 _Explore Azure Monitor_
+
+
+<a name="Exercise6"></a>
+## Exercise 6: Adding more functionality with OMS
+In this exercise, you will use the [Azure Portal](https://portal.azure.com) to set up a new Log Analytics workspace and start gathering data from our virtual machine.
+First, we need to create a new Log Analytics service in our subscription
+1. Open the [Azure Portal](https://portal.azure.com) in your browser. If you are asked to log in, do so using your Microsoft account.
+1. From the Azure portal, click the + (New) button
+1. Enter "Log Analytics" in search, then click on the Log Analytics service
+1. Click CREATE
+
+![Adding a Log Analytics workspace](Images/oms-newloganalytics.JPG)
+
+_Adding a Log Analytics workspace_
+
+
+1. Enter a name for your OMS Workspace 
+1. Select your subscription
+1. Select an existing or create a new resource group
+1. Set Location as Australia Southeast
+1. Select the FREE Pricing tier
+
+![Creating a workspace](Images/oms-newworkspace.JPG)
+
+_Creating a workspace_
+
+
+1. Once created, open your new workspace by:
+1. Clicking the All Resources icon
+1. Finding our OMS workspace in the list and clicking it
+1. In the Log Analytics menu which shows, scroll down to the **Workspace Data Sources** section
+
+In this section, we configure which resources within our Azure environment will report into this OMS workspace
+
+1. click **Virtual Machines**
+
+
+![Setting up OMS integration](Images/oms-vms.JPG)
+
+_Setting up OMS integration_
+
+
+
+1. Click the Virtual Machine we created in Exercice 1
+1. Click the **Connect** button 
+
+![Connecting a VM](Images/oms-vmconnect.JPG)
+
+_Connecting a VM_
+
+
+This will install an additional agent on to the virtual machine which will allow it to report data to the OMS workspace
+
+Now we will open the OMS Portal to take a look at the additional capabilities it provides
+
+1. Scroll back up and click on the "OMS Workspace" tab in the menu
+1. Click on the **OMS Portal** button
+
+![Opening OMS Portal](Images/oms-portal.JPG)
+
+_Opening OMS Portal_
+
+
+The next thing we need to do is add a "solution" to provide the functionality we're after. We're going to investigate what outstanding Windows updates are required by our VM.
+
+1. From the OMS Portal, click on Solutions Gallery
+
+![Solutions Gallery](Images/oms-solutions.JPG)
+
+_Solutions Gallery_
+
+
+1. Scroll to the right and click on **Update Management**
+
+![Update Management Solution](Images/oms-update.JPG)
+
+_Update Management Solution_
+
+
+1. Click **Configure Workspace**
+
+![Update Management Solution](Images/oms-configworkspace.JPG)
+
+_Update Management Solution_
+
+What we're being told here is that in order for the Update Management solution to work, we first need to create an Azure Automation account.
+
+1. Select to create a new account and enter in a name
+
+![Update Management Solution](Images/oms-newauto.JPG)
+
+_Update Management Solution_
+
+
+1. Select to add the solution
+
+![Update Management Solution](Images/oms-addsolution.JPG)
+
+_Update Management Solution_
+
+
+Once back on your OMS dashboard, you'll now see the two solutions we've just added... namely Automation and Update Management.
+
+![Update Management Solution](Images/oms-updateauto.JPG)
+
+_Update Management Solution_
+
+
+>The first time these solutions connect to your environemnt, it can take some time for data to start appearing so to give you a better experience of what OMS is capable of, use the preconfigured environment of the OMS Experience Center in Exercise 7.
+
+<a name="Exercise7"></a>
+## Exercise 7: Explore the OMS Experience Center
+In this exercise, you will use the [OMS Experience Center](https://experience.mms.microsoft.com) which is a preconfigured and populated OMS environment for you to get a better grasp of what OMS is capable of.
+1. Open the [OMS Experience Center](https://experience.mms.microsoft.com) in your browser. 
+1. Enter your details in the relevant text boxes, then select either **Insight & Analytics** or **Security & Compliance** and click **Get Started** (there are two separate labs here come back and try the other too)
+1. Download the PDF from the prompt and follow through the lab details it contains 
+1. You can't break anything (it's read-only), so take a good look and drill down into anything you like
+
+![Sign up for the OMS Experience](Images/oms-signup.JPG)
+
+_Sign up for the OMS Experience_
+
+
+![Download the PDF](Images/oms-pdf.JPG)
+
+_Download the PDF_
+
+
+![OMS Experience Dashboard](Images/oms-xpc.JPG)
+
+_Explore the OMS Experience Center Dashboard_

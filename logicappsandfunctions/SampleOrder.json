@@ -1,0 +1,31 @@
+{  
+   "Order":{  
+      "Customer":{  
+         "Company":"Contoso",
+         "Email":"John.Doe@hotmail.com",
+         "CustomerNumber":"JD-Contoso-001",
+         "Address":{  
+            "Street":"1 Shortland Street",
+            "City":"Auckland",
+            "PostalCode":"1000",
+            "Country":"New Zeland"
+         }
+      },
+      "Products":{  
+         "Product":[  
+            {  
+               "ProductNumber":1000,
+               "Amount":1,
+               "Price":123.45
+            },
+            {  
+               "ProductNumber":2000,
+               "Amount":5,
+               "Price":456.78
+            }
+         ]
+      },
+      "OrderedDateTime":"2017-04-22T13:30:00",
+      "TotalInvoiceAmount":2407.35
+   }
+}
