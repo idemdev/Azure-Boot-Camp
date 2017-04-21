@@ -483,10 +483,12 @@ In this exercise, you will use the [OMS Experience Center](https://experience.mm
 
 _Sign up for the OMS Experience_
 
+
 ![Download the PDF](Images/oms-pdf.JPG)
 
 _Download the PDF_
 
-![OMS Experience Dashboard](Images/oms-pdf.JPG)
+
+![OMS Experience Dashboard](Images/oms-xpc.JPG)
 
 _ OMS Experience Dashboard_
