@@ -10,11 +10,14 @@ The following prerequisites are required:
 
 - Windows Installer 3.1
 
-- [Microsoft XNA Framework Redistributable 4.0](http://www.microsoft.com/en-us/download/details.aspx?id=20914)
-    
+- [Microsoft XNA Framework Redistributable 4.0](http://www.microsoft.com/en-us/download/details.aspx?id=20914)    
 
 [The racing game download](https://gabracinglab2017.blob.core.windows.net/game/publish.htm).
 
 The game is a large download on a slow site so should be done beforehand.
+
+You will need a lab key to access the site and play the game. 
+
+The lab is in the form of XYI-ZET-BMN. 
 
 Have fun racing against other boot camp attendees in locations across the globe!
