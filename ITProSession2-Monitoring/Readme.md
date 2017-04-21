@@ -163,7 +163,15 @@ _Add a new dashboard_
 
 1. In the dashboard editor that appears, update the title at the top to "My GAB Akl Services"
 1. Click the **Markdown** tile on the left and drop it onto the dashboard
-1. Modify the **Edit Markdown** window as shown in the screenshot below. Copy and Paste the following text as Content:
+1. Modify the **Edit Markdown** window as shown in the screenshot below.
+
+
+![Customize your dashboard](Images/dashboard-custom.JPG)
+
+_Customize your dashboard_
+
+
+1. Copy and Paste the following text as Content:
 
 <pre><code>
 	__My GAB Services__
