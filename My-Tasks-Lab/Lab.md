@@ -86,6 +86,26 @@ Repeat the process as above for api-azure-bootcamp-auckland ...
 
 The web site and web service should now be deployed.
 
+Navigate to the [Azure portal](https://portal.azure.com) and login with your credentials.
+
+Click App Services.
+
+![](http://i.imgur.com/yaTiiRr.jpg)
+
+Then click on your web site.
+
+![](http://i.imgur.com/SwpTdRm.jpg)
+
+Then click on Application Settings.
+
+![](http://i.imgur.com/nS0I8GT.jpg)
+
+Then enter a key of apiurl and the URL of the api site.
+
+![](http://i.imgur.com/wmb2xW7.jpg)
+
+Then Save out.
+
 Navigate to the web site e.g.
 
 http://web-azure-bootcamp-auckland-xxx-1234.azurewebsites.net/
