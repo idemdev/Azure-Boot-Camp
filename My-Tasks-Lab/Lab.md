@@ -36,7 +36,7 @@ From "View", open "Server Explorer".
 
 ![](http://i.imgur.com/9bA7Dcu.jpg)
 
-Login to your Azure subscription.
+Login to your Azure subscription. You can ignore this step if you want. When you publish it will automatically ask you to log in. 
 
 ![](http://i.imgur.com/yTy1tIb.jpg)
 
