@@ -165,11 +165,12 @@ _Add a new dashboard_
 1. Click the **Markdown** tile on the left and drop it onto the dashboard
 1. Modify the **Edit Markdown** window as shown in the screenshot below. Copy and Paste the following text as Content:
 
+<pre><code>
 	__My GAB Services__
 	
 	This dashboard will show us performance and availability of our services.
 	<img width="250" height="169" class="alignleft wp-image-26749 size-full" alt="2017-logo-250x169" src="http://global.azurebootcamp.net/wp->content/uploads/2016/09/2017-logo-250x169.png">
-	
+</code></pre>	
 
 1. Click Update
 1. Click Done customizing
