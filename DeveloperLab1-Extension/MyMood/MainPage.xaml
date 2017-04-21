@@ -1,0 +1,17 @@
+﻿<Page
+    x:Class="MyMood.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MyMood"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Image x:Name="image" HorizontalAlignment="Left" Height="200" Margin="132,240,0,0" VerticalAlignment="Top" Width="200"/>
+        <TextBox x:Name="output" HorizontalAlignment="Left" Margin="606,240,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Height="200" Width="200"/>
+        <Button x:Name="takephoto" Content="Take a photo" HorizontalAlignment="Left" Margin="158,116,0,0" VerticalAlignment="Top" Click="takephoto_Click"/>
+        <Button x:Name="getemotion" Content="Check Emotion" HorizontalAlignment="Left" Margin="606,116,0,0" VerticalAlignment="Top" Click="getemotion_Click"/>
+
+    </Grid>
+</Page>
