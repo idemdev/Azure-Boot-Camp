@@ -364,7 +364,7 @@ _Explore Azure Monitor_
 
 
 <a name="Exercise6"></a>
-## Exercise 7: Adding more functionality with OMS
+## Exercise 6: Adding more functionality with OMS
 In this exercise, you will use the [Azure Portal](https://portal.azure.com) to set up a new Log Analytics workspace and start gathering data from our virtual machine.
 First, we need to create a new Log Analytics service in our subscription
 1. Open the [Azure Portal](https://portal.azure.com) in your browser. If you are asked to log in, do so using your Microsoft account.
@@ -373,7 +373,9 @@ First, we need to create a new Log Analytics service in our subscription
 1. Click CREATE
 
 ![Adding a Log Analytics workspace](Images/oms-newloganalytics.JPG)
+
 _Adding a Log Analytics workspace_
+
 
 1. Enter a name for your OMS Workspace 
 1. Select your subscription
@@ -382,7 +384,9 @@ _Adding a Log Analytics workspace_
 1. Select the FREE Pricing tier
 
 ![Creating a workspace](Images/oms-newworkspace.JPG)
+
 _Creating a workspace_
+
 
 1. Once created, open your new workspace by:
 1. Clicking the All Resources icon
@@ -395,14 +399,18 @@ In this section, we configure which resources within our Azure environment will 
 
 
 ![Setting up OMS integration](Images/oms-vms.JPG)
+
 _Setting up OMS integration_
+
 
 
 1. Click the Virtual Machine we created in Exercice 1
 1. Click the **Connect** button 
 
 ![Connecting a VM](Images/oms-vmconnect.JPG)
+
 _Connecting a VM_
+
 
 This will install an additional agent on to the virtual machine which will allow it to report data to the OMS workspace
 
@@ -412,23 +420,30 @@ Now we will open the OMS Portal to take a look at the additional capabilities it
 1. Click on the **OMS Portal** button
 
 ![Opening OMS Portal](Images/oms-portal.JPG)
+
 _Opening OMS Portal_
+
 
 The next thing we need to do is add a "solution" to provide the functionality we're after. We're going to investigate what outstanding Windows updates are required by our VM.
 
 1. From the OMS Portal, click on Solutions Gallery
 
 ![Solutions Gallery](Images/oms-solutions.JPG)
+
 _Solutions Gallery_
+
 
 1. Scroll to the right and click on **Update Management**
 
 ![Update Management Solution](Images/oms-update.JPG)
+
 _Update Management Solution_
+
 
 1. Click **Configure Workspace**
 
-![Update Management Solution](Images/oms-configureworkspace.JPG)
+![Update Management Solution](Images/oms-configworkspace.JPG)
+
 _Update Management Solution_
 
 What we're being told here is that in order for the Update Management solution to work, we first need to create an Azure Automation account.
@@ -436,17 +451,23 @@ What we're being told here is that in order for the Update Management solution t
 1. Select to create a new account and enter in a name
 
 ![Update Management Solution](Images/oms-newauto.JPG)
+
 _Update Management Solution_
+
 
 1. Select to add the solution
 
 ![Update Management Solution](Images/oms-addsolution.JPG)
+
 _Update Management Solution_
+
 
 Once back on your OMS dashboard, you'll now see the two solutions we've just added... namely Automation and Update Management.
 
-![Update Management Solution](Images/oms-update-auto.JPG)
+![Update Management Solution](Images/oms-updateauto.JPG)
+
 _Update Management Solution_
+
 
 >The first time these solutions connect to your environemnt, it can take some time for data to start appearing so to give you a better experience of what OMS is capable of, use the preconfigured environment of the OMS Experience Center in Exercise 7.
 
@@ -454,3 +475,18 @@ _Update Management Solution_
 ## Exercise 7: Explore the OMS Experience Center
 In this exercise, you will use the [OMS Experience Center](https://experience.mms.microsoft.com) which is a preconfigured and populated OMS environment for you to get a better grasp of what OMS is capable of.
 1. Open the [OMS Experience Center](https://experience.mms.microsoft.com) in your browser. 
+1. Enter your details in the relevant text boxes, then select either **Insight & Analytics** or **Security & Compliance** and click **Get Started** (there are two separate labs here come back and try the other too)
+1. Download the PDF from the prompt and follow through the lab details it contains 
+1. You can't break anything (it's read-only), so take a good look anything you like
+
+![Sign up for the OMS Experience](Images/oms-signup.JPG)
+
+_Sign up for the OMS Experience_
+
+![Download the PDF](Images/oms-pdf.JPG)
+
+_Download the PDF_
+
+![OMS Experience Dashboard](Images/oms-pdf.JPG)
+
+_ OMS Experience Dashboard_
