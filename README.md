@@ -14,9 +14,9 @@ Making use of Cognitive Services (Developer Lab #1) = DeveloperLab1
 
 Monitoring & Security in Azure (IT Pro Lab #2) = ITProSession2-Monitoring
 
-Logic Apps and Azure Functions (Developer Lab #2) = Global Azure Bootcamp Logic Apps Lab & 
+Logic Apps and Azure Functions (Developer Lab #2) = Global Azure Bootcamp Logic Apps Lab & Azure Function and Logic Apps GAB 
 
-Web Solutions, Web Apps, APIs, Xamarin, Databases, Analytics (Combined Lab) = My-Tasks-Application/MyTasks & My-Tasks-Lab & Azure       Function and Logic Apps GAB 
+Web Solutions, Web Apps, APIs, Xamarin, Databases, Analytics (Combined Lab) = My-Tasks-Application/MyTasks & My-Tasks-Lab 
 
 
 
