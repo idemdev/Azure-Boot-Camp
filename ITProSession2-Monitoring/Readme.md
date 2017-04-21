@@ -170,6 +170,7 @@ _Add a new dashboard_
 	
 	This dashboard will show us performance and availability of our services.
 	&lt;img width="250" height="169" class="alignleft wp-image-26749 size-full" alt="2017-logo-250x169" src="http://global.azurebootcamp.net/wp->content/uploads/2016/09/2017-logo-250x169.png"&gt;
+&nbsp;
 </code></pre>	
 
 1. Click Update
