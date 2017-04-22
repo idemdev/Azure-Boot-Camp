@@ -128,7 +128,25 @@ Congratulations. You have finished this section :-)
 
 ## Prerequisites ##
 
+Visual Studio 2015 with Xamarin extension installed https://www.xamarin.com/download.
+
+Android emulator with Wifi enabled (will be installed with Xamarin), or an Android device with wifi enabled
+
+and connected to the internet 
+
+Java JDK: http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+
 ## Setup ##
+
+Set the MyTasks.AndroidApp project as the start up project,
+
+Select the Android device or eumlator and click run,
+
+The app will automatically be deployed to your device
+
+Have fun adding all your ToDo s :)
+
+
 
 # Dev Ops #
 
