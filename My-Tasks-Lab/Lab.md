@@ -128,12 +128,13 @@ Congratulations. You have finished this section :-)
 
 ## Prerequisites ##
 
-Visual Studio 2015 with Xamarin extension installed.
+Visual Studio 2015 with Xamarin extension installed https://www.xamarin.com/download.
 
-Android emulator with Wifi enabled, or an Android device with wifi enabled
+Android emulator with Wifi enabled (will be installed with Xamarin), or an Android device with wifi enabled
 
-and connected to the internet,
+and connected to the internet 
 
+Java JDK: http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 
 ## Setup ##
 
